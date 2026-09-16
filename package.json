@@ -1,0 +1,27 @@
+{
+  "name": "flappy-lumluay",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node scripts/optimize-assets.mjs",
+    "engine": "node scripts/build-engine.mjs",
+    "predev": "npm run assets && npm run engine",
+    "prebuild": "npm run assets && npm run engine",
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "check": "node --check src/main.js && node --check src/game/BootScene.js && node --check src/game/GameScene.js && node --check src/game/config.js && node --check src/game/rules.js && node --check src/game/obstacles.js && node --check scripts/optimize-assets.mjs && node --check scripts/build-engine.mjs && node --check src/game/phaser-entry.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "phaser": "3.90.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4",
+    "vite": "8.3.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
