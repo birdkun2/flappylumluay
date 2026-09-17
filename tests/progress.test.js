@@ -5,11 +5,11 @@ const storage = (best = 0) => {
   const values = new Map([['flappy-lumluay-best', String(best)]]);
   return { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
 };
-test('preserves legacy Normal best and blocks locked / unknown modes', () => {
+test('preserves legacy Normal best and unlocks once the 50-point bar is reached', () => {
   const p = createProgress(storage(63));
-  assert.equal(p.normalBest, 63); assert.equal(p.fraction, .63);
+  assert.equal(p.normalBest, 63); assert.equal(p.fraction, 1);
   assert.equal(p.canSelect(MODE.NORMAL), true);
-  assert.equal(p.canSelect(MODE.ROGUELITE), false);
+  assert.equal(p.canSelect(MODE.ROGUELITE), true);
   assert.equal(p.canSelect('unknown'), false);
 });
 test('requires a single 50-point run, persists immediately and never downgrades', () => {
@@ -25,8 +25,8 @@ test('requires a single 50-point run, persists immediately and never downgrades'
   assert.equal(p.canSelect(MODE.NORMAL), true);
 });
 test('celebration survives refresh before being shown and is claimed only once', () => {
-  const save = storage(99); const p = createProgress(save);
-  assert.equal(p.claimCelebration(), false); p.recordNormal(100);
+  const save = storage(49); const p = createProgress(save);
+  assert.equal(p.claimCelebration(), false); p.recordNormal(50);
   const refreshed = createProgress(save);
   assert.equal(refreshed.claimCelebration(), true);
   assert.equal(refreshed.claimCelebration(), false);

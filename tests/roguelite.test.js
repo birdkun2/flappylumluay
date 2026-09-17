@@ -98,7 +98,7 @@ test('Roguelite saves cannot overwrite or unlock Normal progress', () => {
   const values=new Map([['flappy-lumluay-best','63']]);
   const storage={getItem:k=>values.get(k),setItem:(k,v)=>values.set(k,v)};
   const p=createProgress(storage); p.recordRoguelite(150);
-  assert.equal(p.normalBest,63); assert.equal(p.unlocked,false);
+  assert.equal(p.normalBest,63); assert.equal(p.unlocked,true);
   assert.equal(createProgress(storage).rogueliteBest,150);
 });
 
