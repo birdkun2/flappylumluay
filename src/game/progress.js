@@ -2,7 +2,7 @@ import { readBest, saveBest } from './rules.js';
 import { createRogueMeta } from './roguelite/metaProgress.js';
 
 export const MODE = Object.freeze({ NORMAL: 'normal', ROGUELITE: 'roguelite' });
-export const UNLOCK_SCORE = 100;
+export const UNLOCK_SCORE = 50;
 const CELEBRATED_KEY = 'flappy-lumluay-roguelite-celebrated';
 
 export function createProgress(storage) {

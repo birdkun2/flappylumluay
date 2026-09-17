@@ -90,7 +90,7 @@ export default class GameScene extends Phaser.Scene {
     this.title.setVisible(false); this.player.setVisible(false); this.scoreText.setVisible(false);
     this.menu.show();
     if (this.progress.claimCelebration()) { this.menu.celebrate(); this.events.emit('roguelite-unlocked'); }
-    this.announce('Choose Normal Mode or Roguelite Mode. Roguelite unlocks at a Normal best of 100.');
+    this.announce('Choose Normal Mode or Roguelite Mode. Roguelite unlocks at a Normal best of 50.');
   }
   showTitle() {
     this.menu.clear(); this.state = STATE.TITLE; this.mode = null;

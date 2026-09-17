@@ -54,7 +54,7 @@ export default class ModeMenu {
   }
   celebrate() {
     const toast = document.createElement('div'); toast.className = 'unlock-toast'; toast.setAttribute('role', 'status');
-    toast.innerHTML = '<span aria-hidden="true">&#8599;</span><div><strong>ROGUELITE MODE UNLOCKED!</strong><small>100 points. A new horizon is yours.</small></div>';
+    toast.innerHTML = '<span aria-hidden="true">&#8599;</span><div><strong>ROGUELITE MODE UNLOCKED!</strong><small>50 points. A new horizon is yours.</small></div>';
     this.root.append(toast);
   }
   destroy() { this.root.remove(); }
