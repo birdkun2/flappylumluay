@@ -26,6 +26,12 @@ export function drawObstacle(scene, container, kind, startY, endY) {
     container.add(scene.add.tileSprite(0, shaft.y - ART.seamOverlap,
       shaft.width, shaft.height + ART.seamOverlap * 2, pattern.texture, pattern.frame)
       .setOrigin(0.5, 0).setTileScale(shaft.width / pattern.crop[2]));
+    // Keep side outlines inside the shaft and tuck their ends under the caps.
+    for (const x of [-shaft.width / 2, shaft.width / 2 - ART.shaftBorderWidth]) {
+      container.add(scene.add.rectangle(x, shaft.y - ART.seamOverlap,
+        ART.shaftBorderWidth, shaft.height + ART.seamOverlap * 2, ART.shaftBorderColor)
+        .setOrigin(0, 0));
+    }
   }
   for (const part of [parts[0], parts[2]]) {
     container.add(scene.add.image(0, part.y, 'obstacle', part.frame)

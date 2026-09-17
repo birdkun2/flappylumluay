@@ -41,6 +41,8 @@ export const OBSTACLE_ART = {
   top: { cap: 'hangingCap', end: 'hangingTip' },
   bottom: { cap: 'standingCap', end: 'standingBase' },
   seamOverlap: 1, // Logical pixels hidden underneath each decorative join.
+  shaftBorderWidth: 2,
+  shaftBorderColor: 0x000000,
   shaftHitboxInset: 3,
 };
 export const ASSETS = {
