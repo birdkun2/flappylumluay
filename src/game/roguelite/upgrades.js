@@ -15,6 +15,11 @@ import { R } from './rogueliteConfig.js';
   { id: 'feather', name: 'Feather Step', description: 'Every fourth flap is 10% stronger.', rarity: 'epic', maxStacks: 1, apply: s => { s.feather = true; } },
   { id: 'soft', name: 'Soft Paws', description: 'Hold tap / Space to slow your fall for 0.8s. Release to rearm; 4s cooldown.', rarity: 'rare', maxStacks: 1, apply: s => { s.soft = true; } },
   { id: 'gold', name: 'Golden Thread', description: 'Cross the center of 3 gaps in a row to widen the next gap by 24.', rarity: 'rare', maxStacks: 1, apply: s => { s.gold = true; } },
+  { id: 'lastMeow', name: 'Last Meow', description: 'Survive one fatal hit this run. Return safely with a 2s countdown.', rarity: 'legendary', maxStacks: 1, apply: s => { s.extraLife = 1; } },
+  { id: 'whiskers', name: 'Lucky Whiskers', description: 'Pass 5 pillars with a near miss to gain a shield. Holds one.', rarity: 'rare', maxStacks: 1, apply: s => { s.whiskers = true; } },
+  { id: 'rhythm', name: 'Rhythm Cat', description: 'Four evenly timed flaps grant 2s of lighter gravity.', rarity: 'rare', maxStacks: 1, apply: s => { s.rhythm = true; } },
+  { id: 'instinct', name: "Cat's Instinct", description: 'Reveal the center line of the next two gaps.', rarity: 'common', maxStacks: 1, apply: s => { s.instinct = true; } },
+  { id: 'bargain', name: 'Golden Bargain', description: 'Future gaps -10. The next level offers better Rare/Epic odds.', rarity: 'epic', maxStacks: 1, eligible: s => s.remainingLevels > 0, apply: s => { s.gapBonus -= 10; s.fortune = 1; } },
   { id: 'liquid', name: 'Liquid Cat', description: 'Body and hitbox shrink another 20% inside connected corridors.', rarity: 'epic', maxStacks: 1, apply: s => { s.liquid = true; } },
 ];
 // Exhausted-pool choices are short-lived supplies, not uncapped stat stacks.

@@ -11,6 +11,7 @@
   patternGrace: 2, afterShiftGrace: 4, patternLength: [3, 6],
   progressionInterval: 30, maxStage: 6,
   blessingResumeDelay: 2,
+  whiskerDistance: 10, whiskerPasses: 5, rhythmTolerance: 0.2, rhythmDuration: 2, rhythmGravity: 0.85,
   softDuration: 0.8, softCooldown: 4, softFallSpeed: 110,
   goldPasses: 3, goldTolerance: 22, goldGapBonus: 24, liquidScale: 0.8,
   shieldGrace: 1.25, guardianInterval: 30, flowInterval: 5, featherInterval: 4,

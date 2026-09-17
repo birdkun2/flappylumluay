@@ -82,9 +82,9 @@ test('offers are unique, capped upgrades disappear, exhausted pool still supplie
 test('all upgrade effects apply and fresh runs reset all upgrades', () => {
   const u = new UpgradeSystem();
   for (const entry of UPGRADES) { u.offers=[entry]; assert.equal(u.choose(entry.id),true); }
-  assert.equal(u.collected.length,16); assert.equal(u.stats.shields,1);
+  assert.equal(u.collected.length,21); assert.equal(u.stats.shields,1);
   assert.ok(u.stats.gravity<C.GRAVITY); assert.ok(u.stats.flap<C.FLAP_VELOCITY);
-  assert.ok(u.stats.hitbox<1); assert.ok(u.stats.gapBonus>0); assert.ok(u.stats.guardian);
+  assert.ok(u.stats.hitbox<1); assert.equal(u.stats.gapBonus,-2); assert.ok(u.stats.guardian);
   assert.deepEqual(new UpgradeSystem().stats,createRunStats());
 });
 test('collision uses per-pair gap size and upgraded hitbox', () => {
@@ -136,7 +136,7 @@ test('Calm Down stacks without limit and survives speed shifts until run reset',
  assert.ok(u.offer().some(x=>x.id==='calmDown'));
 });
 test('Guardian Charm is the Legendary tier and remains selectable',()=>{
- const u=new UpgradeSystem(()=>.999);
+ const rolls=[.999,0];const u=new UpgradeSystem(()=>rolls.shift()??0);
  assert.equal(UPGRADES.find(x=>x.id==='guardian').rarity,'legendary');
  assert.ok(u.offer().some(x=>x.id==='guardian'));
 });
