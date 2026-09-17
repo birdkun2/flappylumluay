@@ -7,7 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "check": "node --check src/main.js && node --check src/game/BootScene.js && node --check src/game/GameScene.js && node --check src/game/config.js && node --check src/game/rules.js && node --check src/game/obstacles.js",
+    "check": "node --check src/main.js && node --check src/game/BootScene.js && node --check src/game/GameScene.js && node --check src/game/config.js && node --check src/game/rules.js && node --check src/game/obstacles.js && node --check src/game/progress.js && node --check src/game/ModeMenu.js && node --check src/game/roguelite/collision.js && node --check src/game/roguelite/patternSystem.js && node --check src/game/roguelite/rogueliteConfig.js && node --check src/game/roguelite/RogueliteScene.js && node --check src/game/roguelite/RogueUI.js && node --check src/game/roguelite/speedShiftSystem.js && node --check src/game/roguelite/upgrades.js && node --check src/game/roguelite/upgradeSystem.js && node --check src/game/soundEffects.js && node --check src/game/roguelite/blessingEffects.js && node --check src/game/roguelite/metaProgress.js",
     "test": "node --test tests/*.test.js"
   },
   "dependencies": {

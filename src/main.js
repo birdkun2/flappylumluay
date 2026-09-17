@@ -3,12 +3,13 @@ import './style.css';
 import { CONFIG as C } from './game/config.js';
 import BootScene from './game/BootScene.js';
 import GameScene from './game/GameScene.js';
+import RogueliteScene from './game/roguelite/RogueliteScene.js';
 
 const game = new Phaser.Game({
   type: Phaser.AUTO, parent: 'game', width: C.WIDTH, height: C.HEIGHT,
   backgroundColor: '#a4d3f3', pixelArt: true, antialias: false, roundPixels: true,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-  input: { activePointers: 1 }, scene: [BootScene, GameScene],
+  input: { activePointers: 1 }, scene: [BootScene, GameScene, RogueliteScene],
 });
 // Development-only inspection for tuning and browser smoke tests.
 if (import.meta.env.DEV) window.__LUMLUAY_GAME__ = game;

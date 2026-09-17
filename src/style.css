@@ -9,3 +9,69 @@ body {
 #game { width: 100%; height: 100%; min-width: 0; min-height: 0; touch-action: none; user-select: none; -webkit-user-select: none; }
 canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; box-shadow: 0 0 70px #100c1680; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.mode-layer { position: fixed; inset: 0; z-index: 30; pointer-events: none; font-family: 'Courier New', monospace; color: #ffedce; }
+.mode-layer.is-menu { display: grid; place-items: center; padding: 18px; background: #261b22c9; pointer-events: auto; overflow-y: auto; }
+.mode-panel { width: min(100%, 370px); margin: auto; }
+.menu-eyebrow { font-size: 11px; letter-spacing: 3px; color: #efbf69; margin: 0 0 16px; }
+.mode-panel h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(30px, 5.5vh, 43px); line-height: 1.05; font-weight: normal; }
+.mode-panel h1 em { color: #f1c571; }
+.menu-intro { color: #d8bfaa; font-size: 12px; line-height: 1.6; margin: 14px 0 22px; }
+.mode-layer button { font: inherit; cursor: pointer; touch-action: manipulation; pointer-events: auto; }
+.mode-card { display: block; width: 100%; text-align: left; padding: 20px; margin: 0 0 14px; border: 2px solid #d7a353; border-radius: 4px; color: #513128; background: #ffedce; box-shadow: 5px 5px 0 #120e174d; transition: transform .15s, border-color .15s; }
+.mode-card strong { display: block; font-family: Georgia, serif; font-size: 28px; margin: 14px 0 8px; }
+.mode-card > span { display: block; font-size: 12px; line-height: 1.6; }
+.mode-card .card-label { display: flex; justify-content: space-between; font-size: 9px; letter-spacing: 1px; }
+.card-label > span { font-weight: bold; }
+.mode-card .card-bottom { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 10px; letter-spacing: 1px; }
+.card-bottom b { font-size: 19px; }
+.card-bottom > span { margin-left: auto; font-size: 22px; }
+.rogue-card { background: #342932; color: #f2d29a; border-color: #a7834c; }
+.rogue-card:disabled { cursor: default; color: #d6bfa2; border-color: #75604b; }
+.mode-card .unlock-track { height: 5px; margin-top: 16px; background: #19151d; overflow: hidden; }
+.unlock-track i { display: block; height: 100%; background: #eabe64; }
+.mode-card:not(:disabled):active { transform: translateY(2px); }
+.mode-layer button:focus-visible { outline: 3px solid #fff6da; outline-offset: 4px; }
+.menu-back { min-height: 48px; border: 0; background: transparent; color: #efd5ad; padding: 10px 0; font-size: 13px !important; }
+.game-modes { position: absolute; top: max(14px, env(safe-area-inset-top)); left: max(calc(50% - 200px), 14px); min-height: 44px; padding: 10px 14px; border: 1px solid #edcb92; background: #513128e8; color: #ffedce; border-radius: 3px; font-size: 12px !important; }
+.coming-soon { text-align: center; padding: 35px 20px; border: 1px solid #a7834c; background: #30242deb; }
+.gold-diamond { color: #edbd61; font-size: 80px; line-height: 1; margin: 26px 0; }
+.coming-label { color: #eabe64; letter-spacing: 4px; font-size: 12px; margin-top: 28px; }
+.unlock-toast { position: absolute; top: 12%; left: 50%; width: min(360px, calc(100% - 32px)); transform: translateX(-50%); display: flex; align-items: center; gap: 12px; padding: 18px; background: #ffedce; color: #513128; border: 2px solid #d7a353; box-shadow: 0 8px 28px #110a1b66; animation: unlock-arrive .5s ease-out; }
+.unlock-toast > span { color: #a86d17; font-size: 32px; }
+.unlock-toast strong { font-size: 12px; }
+.unlock-toast small { display: block; font-size: 10px; margin-top: 7px; line-height: 1.5; }
+.is-menu .unlock-toast { top: 8px; }
+@media (hover: hover) { .mode-card:not(:disabled):hover { transform: translateY(-2px); border-color: #fff0be; } }
+@media (max-height: 650px) { .mode-card { padding: 14px; margin-bottom: 10px; } .mode-card strong { font-size: 24px; margin-top: 8px; } .menu-intro { margin: 10px 0 14px; } .menu-eyebrow { margin-bottom: 10px; } }
+@keyframes unlock-arrive { from { opacity: 0; translate: 0 -16px; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) { .unlock-toast { animation: none; } .mode-card { transition: none; } }
+.rogue-hud { position: absolute; bottom: max(24px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); width: min(390px, 94%); text-align: center; font-size: 10px; letter-spacing: 1px; color: #fff0cd; background: #35242de8; padding: 10px 8px; border: 1px solid #c79b58; }
+.speed-warning { position: absolute; top: 19%; left: 50%; transform: translateX(-50%); background: #ffedce; border: 2px solid #a76731; color: #63341e; padding: 12px 20px; font-size: 20px; font-weight: bold; box-shadow: 0 5px 0 #251b2266; white-space: nowrap; }
+.speed-warning[hidden] { display: none; }
+.blessing-panel .blessing-card { padding: 15px 18px; margin-bottom: 11px; }
+.blessing-card strong { font-size: 25px; margin: 7px 0; }
+.rarity-rare { background: #e3efeb; border-color: #5da297; }
+.rarity-epic { background: #ece0f3; border-color: #aa75bc; }
+.run-scores { display: flex; justify-content: space-between; margin: 25px 0; color: #ebc785; font-size: 11px; }
+.run-scores strong { display: block; font-size: 42px; color: #ffedce; margin-top: 8px; }
+.run-blessings { max-height: 130px; overflow-y: auto; color: #dbc3ab; font-size: 12px; line-height: 1.8; }
+.restart-rogue { text-align: center; font-weight: bold !important; margin-top: 24px; }
+@media (max-height: 650px) { .blessing-panel h1 { font-size: 28px; } .blessing-panel .blessing-card { padding: 10px 14px; } .blessing-card strong { font-size: 21px; } }
+.blessing-countdown { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); width: min(320px, calc(100% - 32px)); padding: 22px 16px; text-align: center; color: #513128; background: #ffedcef2; border: 2px solid #d7a353; box-shadow: 0 8px 28px #110a1b66; }
+.blessing-countdown span { font-size: 13px; letter-spacing: 3px; }
+.blessing-countdown strong { display: block; font-size: 64px; line-height: 1.2; margin: 8px 0; }
+.blessing-countdown small { font-size: 11px; line-height: 1.5; }
+.sound-toggle { position: absolute; top: max(14px, env(safe-area-inset-top)); right: max(calc(50% - 200px), 14px); min-height: 44px; padding: 10px 14px; color: #ffedce; background: #513128ed; border: 1px solid #edcb92; border-radius: 3px; font-size: 12px !important; }
+.active-blessings { position: absolute; bottom: max(66px, calc(env(safe-area-inset-bottom) + 42px)); left: 50%; transform: translateX(-50%); width: min(390px, 94%); padding: 8px; text-align: center; font-size: 10px; line-height: 1.5; background: #35242de8; color: #ffe2a0; border: 1px solid #c79b58; }
+.shop-wallet { color: #ffdc8d; font-size: 24px; margin: 16px 0 0; font-weight: bold; }
+.rogue-shop .menu-intro { margin: 10px 0 14px; }
+.shop-play { text-align: center; padding: 14px; font-weight: bold !important; }
+.shop-item { padding: 14px; margin-bottom: 10px; }
+.shop-item .card-label { font-size: 11px; margin-bottom: 6px; }
+.shop-item:disabled { cursor: default; background: #493c3e; color: #d2bda7; border-color: #75604b; }
+.shop-status { min-height: 16px; color: #f1c571; font-size: 11px; margin: 8px 0; }
+.blessing-actions { display: flex; gap: 12px; }
+.blessing-action { flex: 1; min-height: 44px; color: #ffe2a0; background: #513128; border: 1px solid #c79b58; font-size: 12px !important; }
+.blessing-action:disabled { opacity: .45; cursor: default; }
+.rarity-legendary { background: linear-gradient(135deg, #fff3bd, #f7cc73); border-color: #ffdf84; box-shadow: 0 0 18px #ffd16b44, 5px 5px 0 #120e174d; }
+.rarity-legendary .card-label { color: #8b470e; font-weight: bold; }
