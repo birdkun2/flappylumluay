@@ -5,7 +5,7 @@ import { CONFIG as C } from '../config.js';
     const s = this.scene, meta = s.progress.rogueMeta;
     this.menu.clear(); this.menu.root.classList.add('is-menu');
     const panel = document.createElement('section'); panel.className = 'mode-panel rogue-shop';
-    panel.innerHTML = `<p class="menu-eyebrow">ROGUELITE / PREPARE YOUR RUN</p><h1>Fly. Earn.<br><em>Grow stronger.</em></h1><p class="shop-wallet">${meta.coins} POINTS</p><p class="menu-intro">Start at LV 1. Level up every 20 score.<br>One blessing per level, up to LV ${meta.maxLevel}.<br>1 score = 1 shop point, saved immediately.</p>`;
+    panel.innerHTML = `<p class="menu-eyebrow">ROGUELITE / PREPARE YOUR RUN</p><h1>Fly. Earn.<br><em>Grow stronger.</em></h1><p class="shop-wallet">${meta.coins} POINTS · BEST ${s.progress.rogueliteBest}</p><p class="menu-intro">Start at LV 1. Level up every 20 score.<br>One blessing per level, up to LV ${meta.maxLevel}.<br>1 score = 1 shop point, saved immediately.</p>`;
     const play = this.menu.button('START RUN', () => s.startRun(), 'mode-card shop-play');
     panel.append(play);
     const heading = document.createElement('p'); heading.className = 'menu-eyebrow'; heading.textContent = 'SHOP / PERMANENT PURCHASES'; panel.append(heading);

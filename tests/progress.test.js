@@ -24,6 +24,13 @@ test('requires a single 50-point run, persists immediately and never downgrades'
   p.recordNormal(150); assert.equal(p.fraction, 1);
   assert.equal(p.canSelect(MODE.NORMAL), true);
 });
+test('roguelite best is tracked separately and keeps the best score across refreshes', () => {
+  const save = storage(20); const p = createProgress(save);
+  p.recordRoguelite(12); p.recordRoguelite(30); p.recordRoguelite(28);
+  assert.equal(p.normalBest, 20);
+  assert.equal(p.rogueliteBest, 30);
+  assert.equal(createProgress(save).rogueliteBest, 30);
+});
 test('celebration survives refresh before being shown and is claimed only once', () => {
   const save = storage(49); const p = createProgress(save);
   assert.equal(p.claimCelebration(), false); p.recordNormal(50);
