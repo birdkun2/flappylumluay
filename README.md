@@ -51,19 +51,13 @@ Obstacles are assembled by `src/game/obstacles.js` from three pieces: a fixed to
 
 Decorative end crops live in **`OBSTACLE_ART.frames` in `src/game/config.js`**. The middle pattern crop is **`OBSTACLE_ART.shaftPattern.crop`**, as `[x, y, width, height]`, currently `[0, 14, 443, 554]` from the 887 ? 1774 image. The same object selects the ends for `top` and `bottom`, sets `seamOverlap`, and sets `shaftHitboxInset`. `CONFIG.OBSTACLE_WIDTH` and `CONFIG.SHAFT_WIDTH` control the displayed widths. Crops are registered in BootScene; rendering and collision share the same part layout so edits stay aligned. The original PNG remains untouched.
 
-Background uses alternating mirrored, uniformly scaled copies to join matching edges indefinitely without stretching. Source sheets are optimized without resizing during the asset build; the shaft/background still tile at runtime.
+Background uses alternating mirrored, uniformly scaled copies to join matching edges indefinitely without stretching. Original PNG sheets are loaded directly; the shaft/background tile at runtime.
 
 No audio in v1. A scene `score` event is available for future sound effects.
 
 
-## Lossless size optimization
+## Assets and startup
 
-`npm run dev` and `npm run build` automatically generate optimized assets and a lean Phaser engine. `sharp` is a build-only dependency; no additional runtime dependency is shipped.
+`npm run dev` starts Vite directly, and `npm run build` runs the standard Vite build. There is no image conversion or separate Phaser engine build before either command.
 
-- `scripts/optimize-assets.mjs` keeps configured source rectangles (plus an 8-pixel sampling gutter) in lossless WebP sheets, without resizing, palette reduction, or lossy encoding. Sheet dimensions and frame coordinates stay unchanged; unused regions become transparent. It decodes every output and verifies byte-for-byte RGBA equality, including transparent pixels. A mismatch fails the build.
-- Original PNGs remain in `public/assets/` and the project root. Only `.generated/public/` is copied to `dist`; original source sheets are not downloaded by players.
-- Crop definitions remain in `src/game/config.js`. Restart `npm run dev` after changing crops or source artwork to rebuild the optimized sheets.
-- `src/game/phaser-entry.js` uses Phaser core plus the Container, TileSprite, and Rectangle factories. Both Canvas and WebGL rendering remain available. Unused physics, particles, tilemaps, and sound are omitted. Add the appropriate Phaser module there if a future feature needs it.
-- `.generated/` is disposable build output and is ignored by Git. Deploy exactly as before; no GitHub Pages settings need changing.
-
-Measured release size: approximately **3.38 MB**, down from **8.19 MB** (about **59% smaller**), before HTTP compression. Maximum-effort lossless encoding can take roughly a minute during startup/build; it does not add runtime work or affect gameplay.
+Images load directly from `public/assets/` as PNG files. Frame rectangles are registered from `src/game/config.js`, with no generated manifest. Vite copies the original images into `dist/assets/`. The game uses the installed Phaser package directly.

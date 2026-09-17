@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { ASSETS, STATE } from './config.js';
+import { ASSETS, STATE, CHARACTER_FRAMES, OBSTACLE_ART, BACKGROUND_FRAME } from './config.js';
 
 export default class BootScene extends Phaser.Scene {
   constructor() { super('Boot'); this.state = STATE.BOOT; }
@@ -12,13 +12,17 @@ export default class BootScene extends Phaser.Scene {
       this.add.text(216, 450, 'Asset loading failed. Please reload.', { fontSize: '14px', color: '#622b24' }).setOrigin(0.5);
       this.failed = true;
     });
-    this.load.json('assetFrames', `${import.meta.env.BASE_URL}assets/frames.json`);
-    for (const key of Object.keys(ASSETS)) this.load.image(key, `${import.meta.env.BASE_URL}assets/${key}.webp`);
+    for (const [key, filename] of Object.entries(ASSETS)) this.load.image(key, `${import.meta.env.BASE_URL}assets/${filename}`);
   }
   create() {
     if (this.failed) return;
-    const manifest = this.cache.json.get('assetFrames');
-    for (const [key, { frames }] of Object.entries(manifest)) {
+    const assetFrames = {
+      character: CHARACTER_FRAMES,
+      obstacle: OBSTACLE_ART.frames,
+      background: { landscape: BACKGROUND_FRAME },
+      shaftPattern: { [OBSTACLE_ART.shaftPattern.frame]: OBSTACLE_ART.shaftPattern.crop },
+    };
+    for (const [key, frames] of Object.entries(assetFrames)) {
       for (const [name, rect] of Object.entries(frames)) this.textures.get(key).add(name, 0, ...rect);
     }
     this.anims.create({ key: 'flight', frames: ['idle', 'flap', 'glide'].map(frame => ({ key: 'character', frame })), frameRate: 9, repeat: -1 });
