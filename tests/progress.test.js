@@ -15,12 +15,12 @@ test('preserves legacy Normal best and unlocks once the 50-point bar is reached'
 test('requires a single 50-point run, persists immediately and never downgrades', () => {
   const save = storage(); const p = createProgress(save);
   p.recordNormal(63); p.recordNormal(60);
-  assert.equal(p.normalBest, 63); assert.equal(p.unlocked, false);
-  p.recordNormal(49); assert.equal(p.unlocked, false);
+  assert.equal(p.normalBest, 63); assert.equal(p.unlocked, true);
+  p.recordNormal(49); assert.equal(p.unlocked, true);
   p.recordNormal(50); assert.equal(p.canSelect(MODE.ROGUELITE), true);
   assert.equal(createProgress(save).unlocked, true);
   p.recordNormal(3); p.recordNormal(NaN); p.recordNormal(Infinity); p.recordNormal(51.5);
-  assert.equal(p.normalBest, 50);
+  assert.equal(p.normalBest, 63);
   p.recordNormal(150); assert.equal(p.fraction, 1);
   assert.equal(p.canSelect(MODE.NORMAL), true);
 });
